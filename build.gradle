@@ -68,3 +68,9 @@ sourceSets {
         }
     }
 }
+
+tasks.register("deleteGeneratedSources") {
+    doFirst {
+        delete "$rootDir/src/main/gen"
+    }
+}
