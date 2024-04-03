@@ -1,0 +1,142 @@
+openapi: 3.0.2
+info:
+  title: Jobs-Project
+  version: 1.0.0
+  description: Api for adding jobs
+  contact:
+    name: Adrian Vrabie
+    email: mr.vrabie@gmail.com
+  license:
+    name: GNU GPLv3
+    url: 'https://www.gnu.org/licenses/gpl.txt'
+servers:
+  -
+    url: 'http://localhost:8080'
+    description: localhost
+paths:
+  /jobs:
+    summary: Path used to manage the list of jobs.
+    description: >-
+      The REST endpoint/path used to list and create zero or more `job` entities.  This path contains a
+      `GET` and `POST` operation to perform the list and create tasks, respectively.
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/job'
+          description: Successful response - returns an array of `job` entities.
+      operationId: getjobs
+      summary: List All jobs
+      description: Gets a list of all `job` entities.
+    post:
+      requestBody:
+        description: A new `job` to be created.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/job'
+        required: true
+      responses:
+        '201':
+          description: Successful response.
+      operationId: createjob
+      summary: Create a job
+      description: Creates a new instance of a `job`.
+  '/jobs/{jobId}':
+    summary: Path used to manage a single job.
+    description: >-
+      The REST endpoint/path used to get, update, and delete single instances of an `job`.  This path
+      contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks,
+      respectively.
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/job'
+          description: Successful response - returns a single `job`.
+      operationId: getjob
+      summary: Get a job
+      description: Gets the details of a single instance of a `job`.
+    put:
+      requestBody:
+        description: Updated `job` information.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/job'
+        required: true
+      responses:
+        '202':
+          description: Successful response.
+      operationId: updatejob
+      summary: Update a job
+      description: Updates an existing `job`.
+    delete:
+      responses:
+        '204':
+          description: Successful response.
+      operationId: deletejob
+      summary: Delete a job
+      description: Deletes an existing `job`.
+    parameters:
+      -
+        name: jobId
+        description: A unique identifier for a `job`.
+        schema:
+          type: string
+        in: path
+        required: true
+components:
+  schemas:
+    job:
+      title: Root Type for job
+      description: sample job description and details about the company
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        location:
+          type: string
+        salary:
+          type: string
+        company:
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            contactEmail:
+              type: string
+            contactPhone:
+              type: string
+      example:
+        id: '1'
+        title: Senior React Developer
+        type: Full-Time
+        description: >-
+          We are seeking a talented Front-End Developer to join our team in Boston, MA. The ideal
+          candidate will have strong skills in HTML, CSS, and JavaScript, with experience working
+          with modern JavaScript frameworks such as React or Angular.
+        location: 'Boston, MA'
+        salary: $70K - $80K
+        company:
+          name: NewTek Solutions
+          description: >-
+            NewTek Solutions is a leading technology company specializing in web development and
+            digital solutions. We pride ourselves on delivering high-quality products and services
+            to our clients while fostering a collaborative and innovative work environment.
+          contactEmail: contact@teksolutions.com
+          contactPhone: 555-555-5555
