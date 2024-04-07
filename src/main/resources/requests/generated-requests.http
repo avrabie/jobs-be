@@ -1,0 +1,76 @@
+### GET request with a header
+GET http://localhost:8080/jobs
+Accept: application/json
+
+
+### GET request with a path parameter
+GET http://localhost:8080/jobs/2
+Accept: application/json
+
+
+### POST request with a body
+POST http://localhost:8080/jobs
+Content-Type: application/json
+
+{
+
+  "title": "Software Engineer In America",
+  "description": "Develop software applications",
+  "salary": "$100K - $110K",
+  "type": "FULL_TIME",
+  "location": "New York",
+  "company": {
+    "name": "ABC Inc",
+    "description": "My Company Description",
+    "contactEmail": "info@company.com",
+    "contactPhone": "123-456-7890"
+  }
+}
+
+### Another post
+POST http://localhost:8080/jobs
+Content-Type: application/json
+
+{
+  "links": [],
+  "title": "Test Job 2",
+  "type": "Full-Time",
+  "description": "Test job 2 description",
+  "location": "Bassersdorf, OH",
+  "salary": "Under $50K",
+  "company": {
+    "links": [],
+    "name": "Umirtro SRL",
+    "description": "Some company in Norther moldova",
+    "contactEmail": "mr.vrabie@gmail.com",
+    "contactPhone": "+373 79128987"
+  }
+}
+
+### DELETE request with a path parameter
+DELETE http://localhost:8080/jobs/10
+Accept: application/json
+
+### PUT request with a path parameter and a body
+PUT http://localhost:8080/jobs/10
+Content-Type: application/json
+
+{
+  "title": "Software Engineer",
+  "description": "Develop software applications",
+  "salary": "$100K - $110K",
+  "type": "FULL_TIME",
+  "location": "Zurich",
+  "company": {
+    "name": "ABC Inc",
+    "description": "My Company Description Updated",
+    "contactEmail": "ina@gmail.com",
+    "contactPhone": "123-456-7890"
+    }
+}
+
+### GET the updated job
+GET http://localhost:8080/jobs/10
+Accept: application/json
+
+<> 2024-04-07T201829.200.json
