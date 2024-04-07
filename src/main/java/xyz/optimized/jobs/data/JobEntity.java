@@ -39,4 +39,16 @@ public class JobEntity {
     private String contactEmail;
     @Column("COMPANY_CONTACT_PHONE")
     private String contactPhone;
+
+    public void update(JobEntity jobEntity) {
+        this.title = jobEntity.title;
+        this.type = jobEntity.type;
+        this.description = jobEntity.description;
+        this.location = jobEntity.location;
+        this.salary = jobEntity.salary;
+        this.name = jobEntity.name;
+        this.companyDescription = jobEntity.companyDescription;
+        this.contactEmail = jobEntity.contactEmail;
+        this.contactPhone = jobEntity.contactPhone;
+    }
 }

@@ -44,6 +44,14 @@ public class JobService {
         return jobRepo.deleteById(getJobId(id));
     }
 
+    public Mono<Void> updateJob(String id, Mono<Job> job) {
+        return jobRepo.findById(getJobId(id))
+                .flatMap(jobEntity -> job.map(mapper::toJobEntity)
+                        .doOnNext(jobEntity::update)
+                        .then(jobRepo.save(jobEntity)))
+                .then();
+    }
+
     // helper methods
     private static int getJobId(String id) {
         return OptionalInt.of(Integer.parseInt(id))

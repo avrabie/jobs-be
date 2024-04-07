@@ -50,4 +50,12 @@ public class JobsController implements JobsApi {
                 .onErrorReturn(ResponseEntity.badRequest().build());
 
     }
+
+    @Override
+    public Mono<ResponseEntity<Void>> updatejob(String jobId, Mono<Job> job, ServerWebExchange exchange) {
+        return jobService.updateJob(jobId, job)
+                .<ResponseEntity<Void>>map(jobEntity1 -> ResponseEntity.ok().build())
+                .onErrorReturn(ResponseEntity.badRequest().build());
+//        return JobsApi.super.updatejob(jobId, job, exchange);
+    }
 }
