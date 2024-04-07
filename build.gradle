@@ -30,7 +30,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    implementation('org.springframework.hateoas:spring-hateoas')
+//    implementation('org.springframework.hateoas:spring-hateoas')
     implementation 'io.swagger.core.v3:swagger-annotations:2.2.21'
     implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
     implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
@@ -68,8 +68,8 @@ openApiGenerate {
             dateLibrary   : "java17",
             interfaceOnly : "true",
             useSpringBoot3: "true",
-            reactive      : "true",
-            hateoas       : "false"
+            reactive      : "true"
+//            hateoas       : "false"
 
     ])
 }
