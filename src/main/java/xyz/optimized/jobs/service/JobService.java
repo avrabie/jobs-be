@@ -27,8 +27,12 @@ public class JobService {
                 .findById(id)
                 .map(mapper::toJob);
     }
-    public Mono<JobEntity> saveJob(JobEntity jobEntity) {
-        return jobRepo.save(jobEntity);
+    public Mono<Void> saveJob(Mono<Job> job) {
+        Mono<JobEntity> aJob = job.map(mapper::toJobEntity);
+        Mono<Void> objectMono = aJob
+                .flatMap(jobRepo::save)
+                .then();
+        return objectMono;
     }
     public Mono<Void> deleteJob(String id) {
         return jobRepo.deleteById(id);

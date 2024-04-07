@@ -7,6 +7,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import xyz.optimized.jobs.apifirst.api.JobsApi;
 import xyz.optimized.jobs.apifirst.model.Job;
+import xyz.optimized.jobs.data.JobEntity;
 import xyz.optimized.jobs.service.JobService;
 
 @RestController
@@ -32,5 +33,15 @@ public class JobsController implements JobsApi {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
+    @Override
+    public Mono<ResponseEntity<Void>> createjob(Mono<Job> job, ServerWebExchange exchange) {
+        Mono<Void> jobEntity = jobService.saveJob(job);
 
+        return jobEntity
+                .<ResponseEntity<Void>>map(jobEntity1 -> ResponseEntity.ok().build())
+                .onErrorReturn(ResponseEntity.badRequest().build())
+                ;
+
+
+    }
 }
