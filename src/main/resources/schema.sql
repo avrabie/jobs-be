@@ -1,17 +1,17 @@
-CREATE TABLE JOBS (
-                        "id" text,
-                        "title" text,
-                        "type" text,
-                        "description" text,
-                        "location" text,
-                        "salary" text,
-                        "company.name" text,
-                        "company.description" text,
-                        "company.contactEmail" text,
-                        "company.contactPhone" text
+CREATE TABLE jobs (
+                        "ID" text,
+                        "TITLE" text,
+                        "TYPE" text,
+                        "DESCRIPTION" text,
+                        "LOCATION" text,
+                        "SALARY" text,
+                        "COMPANY_NAME" text,
+                        "COMPANY_DESCRIPTION" text,
+                        "COMPANY_CONTACT_EMAIL" text,
+                        "COMPANY_CONTACT_PHONE" text
 );
 
-INSERT INTO JOBS ("id","title","type","description","location","salary","company.name","company.description","company.contactEmail","company.contactPhone")
+INSERT INTO jobs ("ID","TITLE","TYPE","DESCRIPTION","LOCATION","SALARY","COMPANY_NAME","COMPANY_DESCRIPTION","COMPANY_CONTACT_EMAIL","COMPANY_CONTACT_PHONE")
 VALUES
     ('1','Senior React Developer','Full-Time','We are seeking a talented Front-End Developer to join our team in Boston, MA. The ideal candidate will have strong skills in HTML, CSS, and JavaScript, with experience working with modern JavaScript frameworks such as React or Angular.','Boston, MA','$70K - $80K','NewTek Solutions','NewTek Solutions is a leading technology company specializing in web development and digital solutions. We pride ourselves on delivering high-quality products and services to our clients while fostering a collaborative and innovative work environment.','contact@teksolutions.com','555-555-5555'),
     ('2','Front-End Engineer (React & Redux)','Full-Time','Join our team as a Front-End Developer in sunny Miami, FL. We are looking for a motivated individual with a passion for crafting beautiful and responsive web applications. Experience with UI/UX design principles and a strong attention to detail are highly desirable.','Miami, FL','$70K - $80K','Veneer Solutions','Veneer Solutions is a creative agency specializing in digital design and development. Our team is dedicated to pushing the boundaries of creativity and innovation to deliver exceptional results for our clients.','contact@loremipsum.com','555-555-5555'),

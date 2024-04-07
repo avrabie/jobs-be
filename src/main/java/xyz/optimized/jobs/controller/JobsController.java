@@ -7,16 +7,30 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import xyz.optimized.jobs.apifirst.api.JobsApi;
 import xyz.optimized.jobs.apifirst.model.Job;
+import xyz.optimized.jobs.service.JobService;
 
 @RestController
 public class JobsController implements JobsApi {
+    private final JobService jobService;
+
+    public JobsController(JobService jobService) {
+        this.jobService = jobService;
+    }
 
     @Override
     public Mono<ResponseEntity<Flux<Job>>> getjobs(ServerWebExchange exchange) {
-        Job job1 = new Job()
-                .id("1")
-                .title("Software Engineer").description("Develop software applications").location("Remote");
-        return Mono.just(ResponseEntity.ok(Flux.just(job1)));
-//        return JobsApi.super.getjobs(exchange);
+        Flux<Job> allJobs = jobService.getAllJobs();
+
+        return Mono.just(ResponseEntity.ok(allJobs))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
+
+    @Override
+    public Mono<ResponseEntity<Job>> getjob(String id, ServerWebExchange exchange) {
+        return jobService.getJobById(id)
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+
 }

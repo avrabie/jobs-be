@@ -14,9 +14,9 @@ import org.springframework.data.relational.core.mapping.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@ToString
 public class JobEntity {
     @Id
+    @Column("ID")
     private String id;
 
     private String title;
@@ -29,14 +29,14 @@ public class JobEntity {
 
     private String salary;
 
-    @Column("company.name")
+    @Column("COMPANY_NAME")
     private String name;
 
-    @Column("company.description")
+    @Column("COMPANY_DESCRIPTION")
     private String companyDescription;
 
-    @Column("company.contactEmail")
+    @Column("COMPANY_CONTACT_EMAIL")
     private String contactEmail;
-    @Column("company.contactPhone")
+    @Column("COMPANY_CONTACT_PHONE")
     private String contactPhone;
 }

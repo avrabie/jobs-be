@@ -23,7 +23,7 @@ public class GreetingsController {
         return Flux.just("Hello",", ", "World!").delayElements(Duration.ofMillis(500));
     }
 
-    @GetMapping("/iaka")
+//    @GetMapping("/iaka")
     public Flux<JobEntity> iaka() {
         return jobRepo.findAll();
     }
