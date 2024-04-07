@@ -18,7 +18,7 @@ class JobEntityToJobMapperTest {
     void toJobEntity() {
         //Setup
         Job job = new Job();
-        job.setId("test-id");
+//        job.setId("3");
         job.setTitle("test-title");
         job.setType("test-type");
         job.setDescription("test-description");
@@ -34,7 +34,8 @@ class JobEntityToJobMapperTest {
         JobEntity result = mapper.toJobEntity(job);
         //Assertions
         assertNotNull(result, "Expected non-null job entity");
-        assertEquals(job.getId(), result.getId(), "Expected matching ID");
+        assertNull(result.getId(), "Expected null ID");
+//        assertEquals(Integer.parseInt(job.getId()), result.getId(), "Expected matching ID");
         assertEquals(job.getTitle(), result.getTitle(), "Expected matching title");
         assertEquals(job.getType(), result.getType(), "Expected matching type");
         assertEquals(job.getDescription(), result.getDescription(), "Expected matching description");

@@ -41,7 +41,13 @@ public class JobsController implements JobsApi {
                 .<ResponseEntity<Void>>map(jobEntity1 -> ResponseEntity.ok().build())
                 .onErrorReturn(ResponseEntity.badRequest().build())
                 ;
+    }
 
+    @Override
+    public Mono<ResponseEntity<Void>> deletejob(String jobId, ServerWebExchange exchange) {
+        return jobService.deleteJob(jobId)
+                .<ResponseEntity<Void>>map(jobEntity1 -> ResponseEntity.ok().build())
+                .onErrorReturn(ResponseEntity.badRequest().build());
 
     }
 }

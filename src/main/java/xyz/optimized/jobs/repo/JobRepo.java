@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import xyz.optimized.jobs.data.JobEntity;
 
 @Repository
-public interface JobRepo extends ReactiveCrudRepository<JobEntity, String> {
+public interface JobRepo extends ReactiveCrudRepository<JobEntity, Integer> {
 
 }

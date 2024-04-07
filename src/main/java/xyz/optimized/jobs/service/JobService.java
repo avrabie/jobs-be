@@ -8,6 +8,8 @@ import xyz.optimized.jobs.data.JobEntity;
 import xyz.optimized.jobs.mappers.JobEntityToJobMapper;
 import xyz.optimized.jobs.repo.JobRepo;
 
+import java.util.OptionalInt;
+
 @Service
 public class JobService {
     private final JobRepo jobRepo;
@@ -23,10 +25,14 @@ public class JobService {
     }
 
     public Mono<Job> getJobById(String id) {
+        int jobId = getJobId(id);
         return jobRepo
-                .findById(id)
+                .findById(jobId)
                 .map(mapper::toJob);
     }
+
+
+
     public Mono<Void> saveJob(Mono<Job> job) {
         Mono<JobEntity> aJob = job.map(mapper::toJobEntity);
         Mono<Void> objectMono = aJob
@@ -35,6 +41,13 @@ public class JobService {
         return objectMono;
     }
     public Mono<Void> deleteJob(String id) {
-        return jobRepo.deleteById(id);
+        return jobRepo.deleteById(getJobId(id));
+    }
+
+    // helper methods
+    private static int getJobId(String id) {
+        return OptionalInt.of(Integer.parseInt(id))
+                .orElseThrow(() -> new IllegalArgumentException("Invalid id"));
+
     }
 }

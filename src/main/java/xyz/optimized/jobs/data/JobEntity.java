@@ -17,7 +17,7 @@ import org.springframework.data.relational.core.mapping.Table;
 public class JobEntity {
     @Id
     @Column("ID")
-    private String id;
+    private Integer id;
 
     private String title;
 
