@@ -12,6 +12,11 @@ java {
     sourceCompatibility = '21'
 }
 
+ext {
+    mapstructVersion = "1.6.0.Beta1"
+    lombokMapstructBindingVersion = "0.2.0"
+}
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -30,12 +35,20 @@ dependencies {
     implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
     implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
 
+    // https://mvnrepository.com/artifact/org.mapstruct/mapstruct
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+//    implementation 'org.mapstruct:mapstruct-processor:${mapstructVersion}'
+
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'io.r2dbc:r2dbc-h2'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
+    //Mapstruct
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
 }
