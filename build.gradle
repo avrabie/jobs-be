@@ -69,7 +69,7 @@ openApiGenerate {
             interfaceOnly : "true",
             useSpringBoot3: "true",
             reactive      : "true",
-            hateoas       : "true"
+            hateoas       : "false"
 
     ])
 }
@@ -87,3 +87,6 @@ tasks.register("deleteGeneratedSources") {
         delete "$rootDir/src/main/gen"
     }
 }
+
+clean.dependsOn("deleteGeneratedSources")
+compileJava.dependsOn("openApiGenerate")

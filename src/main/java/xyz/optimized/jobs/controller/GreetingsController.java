@@ -3,12 +3,10 @@ package xyz.optimized.jobs.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+import xyz.optimized.jobs.apifirst.model.Job;
 import xyz.optimized.jobs.data.JobEntity;
+import xyz.optimized.jobs.mappers.JobEntityToJobMapper;
 import xyz.optimized.jobs.repo.JobRepo;
-import xyz.optimized.jobs.temp.ObjectA;
-import xyz.optimized.jobs.temp.ObjectAObjectBMapper;
-import xyz.optimized.jobs.temp.ObjectB;
 
 import java.time.Duration;
 
@@ -31,13 +29,10 @@ public class GreetingsController {
     }
 
     @GetMapping("/transformation")
-    public Mono<ObjectB> transformation() {
-        ObjectA objectA = new ObjectA();
-        objectA.setId("1");
-        objectA.setName("Name");
-        objectA.setTitle("Title");
-        ObjectB objectB = ObjectAObjectBMapper.INSTANCE.toObjectB(objectA);
-        return Mono.just(objectB);
+    public Flux<Job> transformation() {
+        JobEntityToJobMapper instance = JobEntityToJobMapper.INSTANCE;
+        Flux<JobEntity> all = jobRepo.findAll();
+        return all.map(instance::toJob);
     }
 
 }
