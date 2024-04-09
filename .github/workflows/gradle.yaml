@@ -36,6 +36,12 @@ jobs:
       - name: Build with Gradle Wrapper
         run: ./gradlew clean build
 
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts-jar-file
+          path: build/libs/
+
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
     #
@@ -68,10 +74,6 @@ jobs:
 
 
 
-
-
-
-
   build-docker-image:
 
     runs-on: ubuntu-latest
@@ -80,6 +82,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Use Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts-jar-file
+          path: build/libs/
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
