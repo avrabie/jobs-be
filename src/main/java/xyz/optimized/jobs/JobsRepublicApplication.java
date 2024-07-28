@@ -9,7 +9,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @SpringBootApplication
-
 public class JobsRepublicApplication {
 
     public static void main(String[] args) {
